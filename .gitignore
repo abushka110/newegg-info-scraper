@@ -241,4 +241,4 @@ newegg_laptops.csv
 *.log
 
 # output catalogs
-src/output/
+output/
