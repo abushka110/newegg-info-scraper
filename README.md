@@ -30,7 +30,7 @@ A Python script to scrape laptop names and prices from [Newegg.com](https://www.
 
 3. Install dependencies:
     ```bash
-    pip install -r requirements.txt
+    pip install -r src/requirements.txt
     ```
 
 ---
