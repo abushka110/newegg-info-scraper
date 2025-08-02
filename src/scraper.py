@@ -43,7 +43,10 @@ def scrape_newegg():
 
     # saving into CSV
     df = pd.DataFrame(data)
-    df.to_csv("src/output/newegg_laptops.csv", index=False)
+    output_dir = 'src/output'
+    os.makedirs(output_dir, exist_ok=True)
+    file_path = os.path.join(output_dir, 'newegg_laptops.csv')
+    df.to_csv(file_path, index=False)
     print("Data saved to newegg_laptops.csv")
 
 if __name__ == "__main__":
