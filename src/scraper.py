@@ -1,4 +1,4 @@
-# Main scraping script
+import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -22,13 +22,12 @@ def scrape_newegg():
     wait = WebDriverWait(driver, 10)
     wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.item-cell")))
 
-    with open("page.html", "w", encoding="utf-8") as f:
-        f.write(driver.page_source)
-
     items = driver.find_elements(By.CSS_SELECTOR, "div.item-cell")
     print(f"Found {len(items)} items")
 
-    for item in items[:5]:
+    data = []
+
+    for item in items[:5]:  # example with first 5 items
         title = item.find_element(By.CSS_SELECTOR, "a.item-title").text
         price_whole = item.find_elements(By.CSS_SELECTOR, "li.price-current strong")
         price_fraction = item.find_elements(By.CSS_SELECTOR, "li.price-current sup")
@@ -38,8 +37,14 @@ def scrape_newegg():
             price = "No price"
 
         print(f"{title} — {price}")
+        data.append({"Title": title, "Price": price})
 
     driver.quit()
+
+    # saving into CSV
+    df = pd.DataFrame(data)
+    df.to_csv("src/output/newegg_laptops.csv", index=False)
+    print("Data saved to newegg_laptops.csv")
 
 if __name__ == "__main__":
     scrape_newegg()
