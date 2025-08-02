@@ -9,7 +9,8 @@ A Python script to scrape laptop names and prices from [Newegg.com](https://www.
 - Fetches the HTML page from Newegg  
 - Parses product names and prices  
 - Prints the results to the console  
-- Easily extendable to save results to CSV, parse stock availability, and ratings
+- Saves results to CSV  
+(in developments) - Search laptops by parameters from saved CSV (max price, keyword)
 
 ---
 
@@ -37,6 +38,7 @@ A Python script to scrape laptop names and prices from [Newegg.com](https://www.
 
 ## Usage
 
-Run the script:
+### Scrape laptops from Newegg:
+
 ```bash
-python scraper.py
+python src/scraper.py
